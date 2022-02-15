@@ -32,6 +32,11 @@ void affiche_grille()
 		printf("  %d ", j + 1);
 }
 
+int deplacement_horizontal(int grille)
+{
+	for (int j=0;j<4;j++) // 4 ou max colonnes
+}
+
 void statut_jeu()
 {
 
@@ -48,5 +53,6 @@ int main(int argc, char* argv[])
 	affiche_grille();
 	printf("\n\n\t Joueur 2 : ");
 	statut_jeu();
+	//scanf("%d",&grille);
 	return 0;
 }
