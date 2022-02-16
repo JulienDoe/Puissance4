@@ -4,8 +4,11 @@
 #define NB_LIGNES 7
 #define NB_COLONNES 7
 
+#define PIONS_GAGNANTS 4
+
 #define P1_COIN ('O')
 #define P2_COIN ('X')
+
 
 void affiche_grille()
 {
@@ -32,19 +35,61 @@ void affiche_grille()
 		printf("  %d ", j + 1);
 }
 
-int deplacement_horizontal(int grille)
+int check_vertical(int (*grille)[NB_COLONNES][NB_LIGNES])
 {
-	for (int j=0;j<4;j++) // 4 ou max colonnes
+	int victoire = 0;
+	for (int j = 0; j < NB_COLONNES; j++)
+	{
+		for (int i = 0; i < NB_LIGNES; i++)
+		{
+			if (grille[j][i] == -1)
+				victoire--;
+			else if (grille[j][i] == 1)
+				victoire++;
+			
+		}
+	}
+	return victoire;
 }
 
-void statut_jeu()
+int check_horizontal(int(*grille)[NB_COLONNES][NB_LIGNES], int pion)
 {
+	int victoire = 0;
+	for (int i = 0; i < NB_LIGNES; i++)
+	{
+		for (int j = 0; j < NB_COLONNES; j++)
+		{
+			if (grille[j][i] == -1)
+				victoire--;
+			else if (grille[j][i] == 1)
+				victoire++;
 
+		}
+	}
+	return victoire;
+}
+
+int check_transversal(int(*grille)[NB_COLONNES][NB_LIGNES],int pion)
+{
+	int victoire = 0;
+}
+
+void statut_jeu(int(*grille)[NB_COLONNES][NB_LIGNES], int pion)
+{
+	check_vertical(grille,pion);
+	check_horizontal(grille);
 }
 
 int main(int argc, char* argv[])
 {
+	int grille[NB_COLONNES][NB_LIGNES]; // attention c'est peut etre inversé
+	int pion = 0;
+	//int j1 = 0;
+	//int j2 = 0;
 	
+
+	//AFFICHAGE GRILLE
+	/* 
 	printf("\n\n");
 	affiche_grille();
 	printf("\n\n\t Joueur 1 : ");
@@ -53,6 +98,10 @@ int main(int argc, char* argv[])
 	affiche_grille();
 	printf("\n\n\t Joueur 2 : ");
 	statut_jeu();
-	//scanf("%d",&grille);
+	*/
+
+	statut_jeu(grille,pion);
+
+
 	return 0;
 }
