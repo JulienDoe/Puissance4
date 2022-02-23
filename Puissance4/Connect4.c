@@ -35,24 +35,20 @@ void affiche_grille()
 		printf("  %d ", j + 1);
 }
 
-int check_vertical(int (*grille)[NB_COLONNES][NB_LIGNES])
+int check_vertical(int (*grille)[NB_COLONNES][NB_LIGNES], int pion)
 {
 	int victoire = 0;
-	for (int j = 0; j < NB_COLONNES; j++)
+	for (int i = 0; i < NB_LIGNES; i++)
 	{
-		for (int i = 0; i < NB_LIGNES; i++)
-		{
-			if (grille[j][i] == -1)
+			if (grille[pion][i] == -1)
 				victoire--;
-			else if (grille[j][i] == 1)
+			else if (grille[pion][i] == 1)
 				victoire++;
-			
-		}
 	}
 	return victoire;
 }
 
-int check_horizontal(int(*grille)[NB_COLONNES][NB_LIGNES], int pion)
+int check_horizontal(int(*grille)[NB_COLONNES][NB_LIGNES], int pion) // NOOK
 {
 	int victoire = 0;
 	for (int i = 0; i < NB_LIGNES; i++)
@@ -63,7 +59,6 @@ int check_horizontal(int(*grille)[NB_COLONNES][NB_LIGNES], int pion)
 				victoire--;
 			else if (grille[j][i] == 1)
 				victoire++;
-
 		}
 	}
 	return victoire;
@@ -77,7 +72,7 @@ int check_transversal(int(*grille)[NB_COLONNES][NB_LIGNES],int pion)
 void statut_jeu(int(*grille)[NB_COLONNES][NB_LIGNES], int pion)
 {
 	check_vertical(grille,pion);
-	check_horizontal(grille);
+	check_horizontal(grille,pion);
 }
 
 int main(int argc, char* argv[])
